@@ -13,6 +13,5 @@ pipeline {
          sh "cp -r app resources index.html common.js dist"
         }
       }
-    }
   }
 }
