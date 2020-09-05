@@ -22,4 +22,10 @@ pipeline {
         }
       }
   }
+  post {
+      always {
+        // Clean up workspace, so we don't fill up the build box
+        cleanWs notFailBuild: true
+      }
+  }
 }
