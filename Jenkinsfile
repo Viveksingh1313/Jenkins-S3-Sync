@@ -20,9 +20,9 @@ pipeline {
                  {
                    echo "After withCredentials"
                    dir('dist') {
-                        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-                        unzip awscliv2.zip
-                        sudo ./aws/install
+                        apk add --no-cache python py-pip
+                        pip install awscli
+                        aws --version
                      echo "Inside dist - initiating aws s3 sync"
                      sh "aws s3 sync --region ${region} . s3://jenkins-s3-sync --cache-control no-cache,no-store,must-revalidate,max-age=3600 --delete"
                     }
