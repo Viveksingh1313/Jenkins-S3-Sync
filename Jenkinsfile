@@ -18,6 +18,7 @@ pipeline {
          sh "cp -r index.html dist"
                  withCredentials([ [$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'jenkins-s3']])
                  {
+                    which aws
                     echo "After withCredentials"
                     dir('dist') {
                     echo "Inside dist - initiating aws s3 sync"
