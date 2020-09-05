@@ -16,7 +16,7 @@ pipeline {
                    echo "After withCredentials"
                    dir('dist') {
                      echo "Inside dist - initiating aws s3 sync"
-                     sh "aws s3 sync --region ${region} . arn:aws:s3:::jenkins-s3-sync --cache-control no-cache,no-store,must-revalidate,max-age=3600 --delete"
+                     sh "aws s3 sync --region ${region} . s3://jenkins-s3-sync --cache-control no-cache,no-store,must-revalidate,max-age=3600 --delete"
                     }
                  }
         }
