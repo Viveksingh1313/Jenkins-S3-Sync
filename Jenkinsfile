@@ -18,11 +18,10 @@ pipeline {
          sh "cp -r index.html dist"
                  withCredentials([ [$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'jenkins-s3']])
                  {
-                   echo "After withCredentials"
-                   dir('dist') {
+                    echo "After withCredentials"
                     apk add --no-cache python py-pip
                     pip install awscli
-                    aws --version
+                    dir('dist') {
                     echo "Inside dist - initiating aws s3 sync"
                     sh "aws s3 sync --region ${region} . s3://jenkins-s3-sync --cache-control no-cache,no-store,must-revalidate,max-age=3600 --delete"
                     }
