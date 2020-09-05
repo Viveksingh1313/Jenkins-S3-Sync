@@ -11,7 +11,7 @@ pipeline {
         // Jenkins doesn't expose the hash of the commit being built, so we'll
          sh "mkdir dist"
          sh "cp -r index.html dist"
-                 withCredentials([ [$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AKIA2THY23XZE2DR2OUR (Jenkins AWS connect)']])
+                 withCredentials([ [$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'jenkins-s3']])
                  {
                    echo "After withCredentials"
                    dir('dist') {
