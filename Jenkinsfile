@@ -23,9 +23,9 @@ pipeline {
          sh "cp -r index.html dist"
          echo $(AWS_ACCESS_KEY_ID)
                  withCredentials([ [$class: 'AmazonWebServicesCredentialsBinding',
-                 credentialsId: $(AWS_ID)',
-                 accessKeyVariable:$(AWS_ACCESS_KEY_ID),
-                 secretKeyVariable:$(AWS_SECRET_ACCESS_KEY)
+                 credentialsId: '$(AWS_ID)',
+                 accessKeyVariable:'$(AWS_ACCESS_KEY_ID)'',
+                 secretKeyVariable:'$(AWS_SECRET_ACCESS_KEY)'
                  ]]){
                     echo "After withCredentials"
                     echo $(AWS_ACCESS_KEY_ID)
