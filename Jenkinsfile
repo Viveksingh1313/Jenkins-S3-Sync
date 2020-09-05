@@ -24,7 +24,7 @@ pipeline {
          echo $(AWS_ACCESS_KEY_ID)
                  withCredentials([ [$class: 'AmazonWebServicesCredentialsBinding',
                  credentialsId: '$(AWS_ID)',
-                 accessKeyVariable:'$(AWS_ACCESS_KEY_ID)'',
+                 accessKeyVariable:'$(AWS_ACCESS_KEY_ID)',
                  secretKeyVariable:'$(AWS_SECRET_ACCESS_KEY)'
                  ]]){
                     echo "After withCredentials"
