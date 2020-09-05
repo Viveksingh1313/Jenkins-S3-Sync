@@ -10,7 +10,7 @@ pipeline {
         }
   }
   environment {
-    AWS_ID = credentials("jenkins-s3")
+    AWS_ID = credentials("jenkins-s31")
     AWS_ACCESS_KEY_ID = "${env.AWS_ACCESS_KEY_ID}"
     AWS_SECRET_ACCESS_KEY = "${env.AWS_SECRET_ACCESS_KEY}"
     }
