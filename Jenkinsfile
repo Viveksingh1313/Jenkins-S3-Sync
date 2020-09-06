@@ -18,7 +18,7 @@ pipeline {
          sh "cp -r index.html dist"
                  withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
                  credentialsId: 'jenkins-s3',
-                 accessKeyVariable:'AWS_ACCESS_KEY_ID'
+                 accessKeyVariable:'AWS_ACCESS_KEY_ID',
                  secretKeyVariable:'AWS_SECRET_ACCESS_KEY'
                  ]]){
                     echo "After withCredentials"
