@@ -16,18 +16,22 @@ pipeline {
         // Jenkins doesn't expose the hash of the commit being built, so we'll
          sh "mkdir dist"
          sh "cp -r index.html dist"
-                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-                 credentialsId: 'jenkins-s3',
-                 accessKeyVariable:'AWS_ACCESS_KEY_ID',
-                 secretKeyVariable:'AWS_SECRET_ACCESS_KEY'
-                 ]]){
+         wrappers {
+              credentialsBinding {
+                amazonWebServicesCredentialsBinding {
+                    accessKeyVariable("AWS_ACCESS_KEY_ID")
+                    secretKeyVariable("AWS_SECRET_ACCESS_KEY")
+                    credentialsId("jenkins-s3")
+                 }
+                }
+                 {
                     echo "After withCredentials"
                     dir('dist') {
                     echo "Inside dist - initiating aws s3 sync"
                     sh "aws s3 sync --region ${region} . s3://jenkins-s3-sync"
                     }
                  }
-        }
+            }
       }
   }
   post {
@@ -36,4 +40,5 @@ pipeline {
         cleanWs notFailBuild: true
       }
   }
+}
 }
